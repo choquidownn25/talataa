@@ -11,20 +11,22 @@ import javax.mail.PasswordAuthentication;
 import javax.mail.NoSuchProviderException;
 import com.sun.mail.smtp.SMTPTransport;
 public class XOAuthEmailSender {
-    
-    public static void xOAuthEmailSender(String[] args) {
+
+    public static void xOAuthEmailSender() {
         // Sender's email address and password
-        final String username = "your-email@example.com";
-        final String password = "your-password";
+        final String username = "choquidownn2255@outlook.com";
+        final String password = "1234hiphop";
 
         // Recipient's email address
-        String toEmail = "recipient@example.com";
+        String toEmail = "jose_sarria2003@yahoo.com.mx";
 
         // SMTP server configuration
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.gmail.com");
+        //props.put("mail.smtp.host", "smtp.gmail.com");
+
+        props.put("mail.smtp.host", "smtp-mail.outlook.com");
         props.put("mail.smtp.port", "587");
 
         // OAuth authentication configuration
@@ -50,7 +52,9 @@ public class XOAuthEmailSender {
 
             // Send the message using SMTP transport
             SMTPTransport transport = (SMTPTransport) session.getTransport("smtp");
-            transport.connect("smtp.gmail.com", username, password);
+            //transport.connect("smtp.gmail.com", username, password);
+
+            transport.connect("smtp-mail.outlook.com", username, password);
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
 

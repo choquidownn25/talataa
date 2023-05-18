@@ -4,6 +4,8 @@ import org.exemple.data.ProductoDto;
 import org.exemple.data.request.LoginRequest;
 import org.exemple.data.request.ParametersRequestDTO;
 import org.exemple.data.response.ProductoDtoResponse;
+import org.exemple.utils.XOAuthEmailSender;
+import org.exemple.utils.XOauthEmailReceiver;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -87,5 +89,17 @@ public class TransferController {
         else
             return   new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 
+    }
+
+    //XOAuthEmailSender
+    @GetMapping("/email")
+    public void sendEmail() {
+        XOAuthEmailSender.xOAuthEmailSender();
+    }
+    @GetMapping("/receiver")
+    public void xOauthEmailReceiver() {
+        XOauthEmailReceiver.EmailReceiverMain();
+        XOauthEmailReceiver.mainEmailReceiver();
+        XOauthEmailReceiver.xOauthEmailReceiver();
     }
 }
