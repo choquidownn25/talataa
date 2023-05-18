@@ -4,6 +4,7 @@ import org.exemple.data.ProductoDto;
 import org.exemple.data.request.LoginRequest;
 import org.exemple.data.request.ParametersRequestDTO;
 import org.exemple.data.response.ProductoDtoResponse;
+import org.exemple.utils.OutlookEmailSender;
 import org.exemple.utils.XOAuthEmailSender;
 import org.exemple.utils.XOauthEmailReceiver;
 import org.springframework.http.HttpStatus;
@@ -97,7 +98,8 @@ public class TransferController {
         XOAuthEmailSender.xOAuthEmailSender();
     }
     @GetMapping("/receiver")
-    public void xOauthEmailReceiver() {
+    public void xOauthEmailReceiver() throws Exception {
+        OutlookEmailSender.outlookEmailSender() ;
         XOauthEmailReceiver.EmailReceiverMain();
         XOauthEmailReceiver.mainEmailReceiver();
         XOauthEmailReceiver.xOauthEmailReceiver();
