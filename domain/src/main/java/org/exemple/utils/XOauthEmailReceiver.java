@@ -87,7 +87,7 @@ public class XOauthEmailReceiver {
         }
     }
 
-    public static void EmailReceiverMain() {
+    public static void emailReceiverMain() {
         // Configuración de propiedades
         Properties props = new Properties();
         props.put("mail.imap.host", "imap-mail.outlook.com");
@@ -97,7 +97,7 @@ public class XOauthEmailReceiver {
 
         // Datos de autenticación
         String username = "choquidownn2255@outlook.com";
-        String accessToken = "tu_token_de_acceso";
+        String accessToken = "1234hiphop";
 
         // Creación de la sesión
         Session session = Session.getInstance(props, new Authenticator() {
@@ -130,6 +130,7 @@ public class XOauthEmailReceiver {
             inbox.close(false);
             store.close();
         } catch (Exception e) {
+            System.out.println("Error : " + e.getMessage());
             e.printStackTrace();
         }
     }

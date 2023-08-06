@@ -4,9 +4,7 @@ import org.exemple.data.ProductoDto;
 import org.exemple.data.request.LoginRequest;
 import org.exemple.data.request.ParametersRequestDTO;
 import org.exemple.data.response.ProductoDtoResponse;
-import org.exemple.utils.OutlookEmailSender;
-import org.exemple.utils.XOAuthEmailSender;
-import org.exemple.utils.XOauthEmailReceiver;
+import org.exemple.utils.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +16,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.MediaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -99,9 +98,22 @@ public class TransferController {
     }
     @GetMapping("/receiver")
     public void xOauthEmailReceiver() throws Exception {
-        OutlookEmailSender.outlookEmailSender() ;
-        XOauthEmailReceiver.EmailReceiverMain();
+        //OutlookEmailSender.outlookEmailSender() ;
+        //XOauthEmailReceiver.emailReceiverMain();
+        String host = "pop-mail.outlook.com";//change accordingly
+        String mailStoreType = "pop3.live.com";
+        String username= "choquidownn2255@outlook.com";
+        String password= "1234hiphop";//change accordingly
+        XOAuthEmailSender.receiveEmail(host, mailStoreType, username, password);
+        XOauthEmailReceiver.emailReceiverMain();
         XOauthEmailReceiver.mainEmailReceiver();
         XOauthEmailReceiver.xOauthEmailReceiver();
+    }
+    @GetMapping("/recivedEmailImp")
+    public void recivedEmailImp() throws Exception {
+
+        // for POP3
+        //String protocol = "pop3";
+        JavaMailIMAPProtocolOutlook.recivedEmailIMP();
     }
 }
